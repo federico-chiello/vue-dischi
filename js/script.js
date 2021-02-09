@@ -12,14 +12,23 @@ var app = new Vue ({
     axios
     .get('https://flynn.boolean.careers/exercises/api/array/music')
     .then((result) => {
-      this.songs = result.data.response;
-      // console.log(this.song);
-      this.songs.forEach((item, i) => {
-        // console.log(item);
-        if (!this.songs.includes(item.genre)) {
-          this.genres.push(item.genre);
-        }
-      });
+      genreMusic();
     });
+  },
+  methods: {
+    genreMusic(){
+      axios
+      .get('https://flynn.boolean.careers/exercises/api/array/music')
+      .then((result) => {
+        this.songs = result.data.response;
+        // console.log(this.song);
+        this.songs.forEach((item, i) => {
+          // console.log(item);
+          if (!this.songs.includes(item.genre)) {
+            this.genres.push(item.genre);
+          }
+        });
+      });
+    }
   }
 });
