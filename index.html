@@ -11,21 +11,29 @@
   <title>Document</title>
 </head>
 <body>
+  <!-- header -->
   <header>
     <div class="container">
       <img src="logo.png" alt="logo" />
     </div>
   </header>
-
-  <div class="cds-container container" id="music">
-    <!-- Disco ad esempio -->
-    <div class="cd" v-for="song in songs">
-      <img :src="song.poster" alt="">
-      <h3>{{ song.title }}</h3>
-      <span class="author">{{ song.author }}</span>
-      <span class="year">{{ song.year }}</span>
+  <!-- area artisti -->
+  <div id="music">
+    <!-- selezione genere -->
+    <select name="">
+      <option v-for="element in genres" :value="element">{{ element }}</option>
+    </select>
+    <!-- canzone -->
+    <div class="cds-container container">
+      <div class="cd" v-for="song in songs">
+        <img :src="song.poster" alt="">
+        <h3>{{ song.title }}</h3>
+        <span class="author">{{ song.author }}</span>
+        <span class="year">{{ song.year }}</span>
+      </div>
     </div>
   </div>
+
   <script src="js/script.js" charset="utf-8"></script>
 </body>
 </html>
