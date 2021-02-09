@@ -39,7 +39,7 @@ var app = new Vue ({
     },
     chooseOption(index){
       this.selectGenre = this.genres[index];
-			console.log(this.selectGenre);
+			// console.log(this.selectGenre);
 			if(this.selectGenre == "All"){
 				this.newSong = this.songs;
 			} else if(this.selectGenre == "Rock") {
