@@ -21,11 +21,11 @@
   <div id="music">
     <!-- selezione genere -->
     <select name="">
-      <option v-for="element in genres" :value="element">{{ element }}</option>
+      <option v-for="(element, index) in genres" :value="element" @click="chooseOption(index)">{{ element }}</option>
     </select>
     <!-- canzone -->
     <div class="cds-container container">
-      <div class="cd" v-for="song in songs">
+      <div class="cd" v-for="song in newSong">
         <img :src="song.poster" alt="">
         <h3>{{ song.title }}</h3>
         <span class="author">{{ song.author }}</span>

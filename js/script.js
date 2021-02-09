@@ -6,7 +6,13 @@ var app = new Vue ({
   el: '#music',
   data: {
     songs: [],
-    genres: ['All']
+    genres: ['All'],
+    groupRock: [],
+    groupPop: [],
+    groupJazz: [],
+    groupMetal: [],
+    selectGenre: 'All',
+    newSong: []
   },
   mounted(){
     axios
@@ -14,18 +20,42 @@ var app = new Vue ({
     .then((result) => {
       this.songs = result.data.response;
       // console.log(this.songs);
+      this.newSong = this.songs;
+      this.groupRock = this.songs.filter((element) => element.genre == 'Rock');
+      this.groupPop = this.songs.filter((element) => element.genre == 'Pop');
+      this.groupJazz = this.songs.filter((element) => element.genre == 'Jazz');
+      this.groupMetal = this.songs.filter((element) => element.genre == 'Metal');
       this.genreMusic();
     });
   },
   methods: {
     genreMusic(){
-      // console.log(this.song);
       this.songs.forEach((item, i) => {
         // console.log(item);
         if (!this.genres.includes(item.genre)) {
           this.genres.push(item.genre);
         }
       });
+    },
+    chooseOption(index){
+      this.selectGenre = this.genres[index];
+			console.log(this.selectGenre);
+			if(this.selectGenre == "All"){
+				this.newSong = this.songs;
+			} else if(this.selectGenre == "Rock") {
+        this.newSong = '';
+				this.newSong = this.groupRock;
+			} else if(this.selectGenre == "Jazz") {
+        this.newSong = '';
+				this.newSong = this.groupJazz;
+			} else if(this.selectGenre == "Pop") {
+        this.newSong = '';
+				this.newSong = this.groupPop;
+			} else if(this.selectGenre == "Metal") {
+        this.newSong = '';
+				this.newSong = this.groupMetal;
+			}
+      // console.log(this.newSong);
     }
   }
 });
