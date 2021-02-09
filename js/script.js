@@ -8,7 +8,7 @@ var app = new Vue ({
     songs: [],
     genres: ['All']
   },
-  created(){
+  mounted(){
     axios
     .get('https://flynn.boolean.careers/exercises/api/array/music')
     .then((result) => {
@@ -16,12 +16,9 @@ var app = new Vue ({
       // console.log(this.song);
       this.songs.forEach((item, i) => {
         // console.log(item);
-        if (this.songs.includes(item.genre)) {
-          this.genres = '';
-        } else {
+        if (!this.songs.includes(item.genre)) {
           this.genres.push(item.genre);
         }
-        console.log(this.genres);
       });
     });
   }
